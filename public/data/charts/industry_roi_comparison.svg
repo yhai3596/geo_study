@@ -1,0 +1,147 @@
+<svg width="800" height="600" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="techGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#3B82F6;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1E40AF;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="financeGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#10B981;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#059669;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="healthGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#F59E0B;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#D97706;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="educationGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#8B5CF6;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#7C3AED;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="ecommerceGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#EF4444;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#DC2626;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="mediaGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#06B6D4;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#0891B2;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- 背景 -->
+  <rect width="800" height="600" fill="#F8FAFC"/>
+  
+  <!-- 标题 -->
+  <text x="400" y="30" text-anchor="middle" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#1F2937">不同行业GEO投资回报率对比</text>
+  
+  <!-- 副标题 -->
+  <text x="400" y="50" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#6B7280">基于6个月实施周期的ROI分析 (投资回报率 = 收益增长 / 投资成本)</text>
+  
+  <!-- Y轴标签 -->
+  <text x="30" y="100" font-family="Arial, sans-serif" font-size="12" fill="#374151" transform="rotate(-90, 30, 100)">投资回报率 (%)</text>
+  
+  <!-- Y轴刻度 -->
+  <line x1="60" y1="80" x2="60" y2="400" stroke="#D1D5DB" stroke-width="2"/>
+  <text x="55" y="85" text-anchor="end" font-family="Arial, sans-serif" font-size="10" fill="#6B7280">500</text>
+  <text x="55" y="120" text-anchor="end" font-family="Arial, sans-serif" font-size="10" fill="#6B7280">400</text>
+  <text x="55" y="155" text-anchor="end" font-family="Arial, sans-serif" font-size="10" fill="#6B7280">300</text>
+  <text x="55" y="190" text-anchor="end" font-family="Arial, sans-serif" font-size="10" fill="#6B7280">200</text>
+  <text x="55" y="225" text-anchor="end" font-family="Arial, sans-serif" font-size="10" fill="#6B7280">100</text>
+  <text x="55" y="260" text-anchor="end" font-family="Arial, sans-serif" font-size="10" fill="#6B7280">0</text>
+  
+  <!-- X轴 -->
+  <line x1="60" y1="400" x2="750" y2="400" stroke="#D1D5DB" stroke-width="2"/>
+  
+  <!-- 网格线 -->
+  <line x1="60" y1="80" x2="750" y2="80" stroke="#F3F4F6" stroke-width="1"/>
+  <line x1="60" y1="120" x2="750" y2="120" stroke="#F3F4F6" stroke-width="1"/>
+  <line x1="60" y1="155" x2="750" y2="155" stroke="#F3F4F6" stroke-width="1"/>
+  <line x1="60" y1="190" x2="750" y2="190" stroke="#F3F4F6" stroke-width="1"/>
+  <line x1="60" y1="225" x2="750" y2="225" stroke="#F3F4F6" stroke-width="1"/>
+  <line x1="60" y1="260" x2="750" y2="260" stroke="#F3F4F6" stroke-width="1"/>
+  
+  <!-- 柱状图 -->
+  <!-- 科技行业 ROI: 420% -->
+  <rect x="80" y="113" width="80" height="287" fill="url(#techGradient)" rx="4"/>
+  <text x="120" y="105" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#1E40AF">420%</text>
+  
+  <!-- 金融服务 ROI: 380% -->
+  <rect x="180" y="126" width="80" height="274" fill="url(#financeGradient)" rx="4"/>
+  <text x="220" y="118" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#059669">380%</text>
+  
+  <!-- 医疗健康 ROI: 350% -->
+  <rect x="280" y="135" width="80" height="265" fill="url(#healthGradient)" rx="4"/>
+  <text x="320" y="127" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#D97706">350%</text>
+  
+  <!-- 教育培训 ROI: 310% -->
+  <rect x="380" y="147" width="80" height="253" fill="url(#educationGradient)" rx="4"/>
+  <text x="420" y="139" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#7C3AED">310%</text>
+  
+  <!-- 电商零售 ROI: 280% -->
+  <rect x="480" y="163" width="80" height="237" fill="url(#ecommerceGradient)" rx="4"/>
+  <text x="520" y="155" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#DC2626">280%</text>
+  
+  <!-- 媒体内容 ROI: 250% -->
+  <rect x="580" y="175" width="80" height="225" fill="url(#mediaGradient)" rx="4"/>
+  <text x="620" y="167" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#0891B2">250%</text>
+  
+  <!-- X轴标签 -->
+  <text x="120" y="420" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#374151">科技行业</text>
+  <text x="220" y="420" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#374151">金融服务</text>
+  <text x="320" y="420" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#374151">医疗健康</text>
+  <text x="420" y="420" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#374151">教育培训</text>
+  <text x="520" y="420" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#374151">电商零售</text>
+  <text x="620" y="420" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#374151">媒体内容</text>
+  
+  <!-- 行业特点分析 -->
+  <text x="400" y="460" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#1F2937">行业特点与优化策略</text>
+  
+  <!-- 科技行业 -->
+  <rect x="50" y="480" width="110" height="80" fill="#EFF6FF" stroke="#3B82F6" stroke-width="1" rx="6"/>
+  <text x="105" y="495" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#1E40AF">科技行业</text>
+  <text x="55" y="510" font-family="Arial, sans-serif" font-size="9" fill="#374151">• 技术内容权威性高</text>
+  <text x="55" y="522" font-family="Arial, sans-serif" font-size="9" fill="#374151">• AI搜索采用率领先</text>
+  <text x="55" y="534" font-family="Arial, sans-serif" font-size="9" fill="#374151">• 专业术语优化效果佳</text>
+  <text x="55" y="546" font-family="Arial, sans-serif" font-size="9" fill="#374151">• 投资回收期最短</text>
+  
+  <!-- 金融服务 -->
+  <rect x="170" y="480" width="110" height="80" fill="#F0FDF4" stroke="#10B981" stroke-width="1" rx="6"/>
+  <text x="225" y="495" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#059669">金融服务</text>
+  <text x="175" y="510" font-family="Arial, sans-serif" font-size="9" fill="#374151">• 监管合规要求严格</text>
+  <text x="175" y="522" font-family="Arial, sans-serif" font-size="9" fill="#374151">• 权威数据引用重要</text>
+  <text x="175" y="534" font-family="Arial, sans-serif" font-size="9" fill="#374151">• 风险提示内容必需</text>
+  <text x="175" y="546" font-family="Arial, sans-serif" font-size="9" fill="#374151">• 客户信任度提升明显</text>
+  
+  <!-- 医疗健康 -->
+  <rect x="290" y="480" width="110" height="80" fill="#FEF3C7" stroke="#F59E0B" stroke-width="1" rx="6"/>
+  <text x="345" y="495" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#D97706">医疗健康</text>
+  <text x="295" y="510" font-family="Arial, sans-serif" font-size="9" fill="#374151">• 专业性要求极高</text>
+  <text x="295" y="522" font-family="Arial, sans-serif" font-size="9" fill="#374151">• 医学证据引用关键</text>
+  <text x="295" y="534" font-family="Arial, sans-serif" font-size="9" fill="#374151">• 安全性信息优先</text>
+  <text x="295" y="546" font-family="Arial, sans-serif" font-size="9" fill="#374151">• 患者教育价值高</text>
+  
+  <!-- 教育培训 -->
+  <rect x="410" y="480" width="110" height="80" fill="#FAF5FF" stroke="#8B5CF6" stroke-width="1" rx="6"/>
+  <text x="465" y="495" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#7C3AED">教育培训</text>
+  <text x="415" y="510" font-family="Arial, sans-serif" font-size="9" fill="#374151">• 知识传播为核心</text>
+  <text x="415" y="522" font-family="Arial, sans-serif" font-size="9" fill="#374151">• 问答格式效果好</text>
+  <text x="415" y="534" font-family="Arial, sans-serif" font-size="9" fill="#374151">• 学习路径清晰重要</text>
+  <text x="415" y="546" font-family="Arial, sans-serif" font-size="9" fill="#374151">• 长期品牌建设价值</text>
+  
+  <!-- 电商零售 -->
+  <rect x="530" y="480" width="110" height="80" fill="#FEF2F2" stroke="#EF4444" stroke-width="1" rx="6"/>
+  <text x="585" y="495" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#DC2626">电商零售</text>
+  <text x="535" y="510" font-family="Arial, sans-serif" font-size="9" fill="#374151">• 产品信息准确性关键</text>
+  <text x="535" y="522" font-family="Arial, sans-serif" font-size="9" fill="#374151">• 用户评价整合重要</text>
+  <text x="535" y="534" font-family="Arial, sans-serif" font-size="9" fill="#374151">• 价格比较优化必需</text>
+  <text x="535" y="546" font-family="Arial, sans-serif" font-size="9" fill="#374151">• 转化率提升显著</text>
+  
+  <!-- 媒体内容 -->
+  <rect x="650" y="480" width="110" height="80" fill="#ECFEFF" stroke="#06B6D4" stroke-width="1" rx="6"/>
+  <text x="705" y="495" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#0891B2">媒体内容</text>
+  <text x="655" y="510" font-family="Arial, sans-serif" font-size="9" fill="#374151">• 时效性要求高</text>
+  <text x="655" y="522" font-family="Arial, sans-serif" font-size="9" fill="#374151">• 多媒体内容优势</text>
+  <text x="655" y="534" font-family="Arial, sans-serif" font-size="9" fill="#374151">• 社交传播效应强</text>
+  <text x="655" y="546" font-family="Arial, sans-serif" font-size="9" fill="#374151">• 品牌影响力扩大</text>
+  
+  <!-- 投资建议 -->
+  <text x="400" y="585" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#1F2937">💡 投资建议：科技和金融行业优先投入，医疗健康次之，所有行业6个月内均可实现正ROI</text>
+</svg>

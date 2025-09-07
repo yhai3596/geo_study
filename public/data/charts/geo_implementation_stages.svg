@@ -1,0 +1,149 @@
+<svg width="800" height="600" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="stage1Gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#3B82F6;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1E40AF;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="stage2Gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#10B981;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#059669;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="stage3Gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#8B5CF6;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#7C3AED;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- 背景 -->
+  <rect width="800" height="600" fill="#F8FAFC"/>
+  
+  <!-- 标题 -->
+  <text x="400" y="30" text-anchor="middle" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#1F2937">GEO三阶段实施流程图</text>
+  
+  <!-- 阶段1：基础建设 -->
+  <rect x="50" y="70" width="200" height="150" fill="url(#stage1Gradient)" rx="15"/>
+  <text x="150" y="95" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="white">阶段一：基础建设</text>
+  <text x="150" y="115" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="white">(1-2个月)</text>
+  
+  <!-- 阶段1任务 -->
+  <text x="60" y="140" font-family="Arial, sans-serif" font-size="11" fill="white" font-weight="bold">核心任务：</text>
+  <text x="60" y="155" font-family="Arial, sans-serif" font-size="10" fill="white">• 内容审计与分析</text>
+  <text x="60" y="170" font-family="Arial, sans-serif" font-size="10" fill="white">• 建立权威性框架</text>
+  <text x="60" y="185" font-family="Arial, sans-serif" font-size="10" fill="white">• 优化内容结构</text>
+  <text x="60" y="200" font-family="Arial, sans-serif" font-size="10" fill="white">• 实施基础技术标记</text>
+  
+  <!-- 阶段2：优化提升 -->
+  <rect x="300" y="70" width="200" height="150" fill="url(#stage2Gradient)" rx="15"/>
+  <text x="400" y="95" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="white">阶段二：优化提升</text>
+  <text x="400" y="115" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="white">(2-3个月)</text>
+  
+  <!-- 阶段2任务 -->
+  <text x="310" y="140" font-family="Arial, sans-serif" font-size="11" fill="white" font-weight="bold">核心任务：</text>
+  <text x="310" y="155" font-family="Arial, sans-serif" font-size="10" fill="white">• 高效方法实施</text>
+  <text x="310" y="170" font-family="Arial, sans-serif" font-size="10" fill="white">• 引用语句优化</text>
+  <text x="310" y="185" font-family="Arial, sans-serif" font-size="10" fill="white">• 统计数据整合</text>
+  <text x="310" y="200" font-family="Arial, sans-serif" font-size="10" fill="white">• 语义优化升级</text>
+  
+  <!-- 阶段3：监控优化 -->
+  <rect x="550" y="70" width="200" height="150" fill="url(#stage3Gradient)" rx="15"/>
+  <text x="650" y="95" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="white">阶段三：监控优化</text>
+  <text x="650" y="115" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="white">(持续进行)</text>
+  
+  <!-- 阶段3任务 -->
+  <text x="560" y="140" font-family="Arial, sans-serif" font-size="11" fill="white" font-weight="bold">核心任务：</text>
+  <text x="560" y="155" font-family="Arial, sans-serif" font-size="10" fill="white">• 效果监控分析</text>
+  <text x="560" y="170" font-family="Arial, sans-serif" font-size="10" fill="white">• 策略调整优化</text>
+  <text x="560" y="185" font-family="Arial, sans-serif" font-size="10" fill="white">• 新技术跟进</text>
+  <text x="560" y="200" font-family="Arial, sans-serif" font-size="10" fill="white">• 持续内容更新</text>
+  
+  <!-- 阶段间连接箭头 -->
+  <path d="M 250 145 L 290 145" stroke="#6B7280" stroke-width="3" fill="none" marker-end="url(#arrowhead)"/>
+  <path d="M 500 145 L 540 145" stroke="#6B7280" stroke-width="3" fill="none" marker-end="url(#arrowhead)"/>
+  
+  <!-- 详细流程图 -->
+  <text x="400" y="270" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#1F2937">详细实施流程</text>
+  
+  <!-- 阶段1详细流程 -->
+  <text x="150" y="300" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#1E40AF">阶段一详细步骤</text>
+  
+  <rect x="50" y="310" width="200" height="25" fill="#EFF6FF" stroke="#3B82F6" stroke-width="1" rx="5"/>
+  <text x="150" y="327" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#1E40AF">1. 现状评估 (1周)</text>
+  
+  <rect x="50" y="340" width="200" height="25" fill="#EFF6FF" stroke="#3B82F6" stroke-width="1" rx="5"/>
+  <text x="150" y="357" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#1E40AF">2. 内容结构优化 (2-3周)</text>
+  
+  <rect x="50" y="370" width="200" height="25" fill="#EFF6FF" stroke="#3B82F6" stroke-width="1" rx="5"/>
+  <text x="150" y="387" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#1E40AF">3. 技术基础搭建 (2-3周)</text>
+  
+  <rect x="50" y="400" width="200" height="25" fill="#EFF6FF" stroke="#3B82F6" stroke-width="1" rx="5"/>
+  <text x="150" y="417" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#1E40AF">4. 初步效果测试 (1周)</text>
+  
+  <!-- 阶段2详细流程 -->
+  <text x="400" y="300" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#059669">阶段二详细步骤</text>
+  
+  <rect x="300" y="310" width="200" height="25" fill="#F0FDF4" stroke="#10B981" stroke-width="1" rx="5"/>
+  <text x="400" y="327" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#059669">1. 高效方法部署 (3-4周)</text>
+  
+  <rect x="300" y="340" width="200" height="25" fill="#F0FDF4" stroke="#10B981" stroke-width="1" rx="5"/>
+  <text x="400" y="357" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#059669">2. 内容深度优化 (4-5周)</text>
+  
+  <rect x="300" y="370" width="200" height="25" fill="#F0FDF4" stroke="#10B981" stroke-width="1" rx="5"/>
+  <text x="400" y="387" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#059669">3. 引用系统建设 (2-3周)</text>
+  
+  <rect x="300" y="400" width="200" height="25" fill="#F0FDF4" stroke="#10B981" stroke-width="1" rx="5"/>
+  <text x="400" y="417" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#059669">4. 效果评估调整 (1-2周)</text>
+  
+  <!-- 阶段3详细流程 -->
+  <text x="650" y="300" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#7C3AED">阶段三详细步骤</text>
+  
+  <rect x="550" y="310" width="200" height="25" fill="#FAF5FF" stroke="#8B5CF6" stroke-width="1" rx="5"/>
+  <text x="650" y="327" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#7C3AED">1. 监控体系建立 (持续)</text>
+  
+  <rect x="550" y="340" width="200" height="25" fill="#FAF5FF" stroke="#8B5CF6" stroke-width="1" rx="5"/>
+  <text x="650" y="357" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#7C3AED">2. 数据分析优化 (每月)</text>
+  
+  <rect x="550" y="370" width="200" height="25" fill="#FAF5FF" stroke="#8B5CF6" stroke-width="1" rx="5"/>
+  <text x="650" y="387" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#7C3AED">3. 策略迭代升级 (每季度)</text>
+  
+  <rect x="550" y="400" width="200" height="25" fill="#FAF5FF" stroke="#8B5CF6" stroke-width="1" rx="5"/>
+  <text x="650" y="417" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#7C3AED">4. 新技术整合 (按需)</text>
+  
+  <!-- 关键指标 -->
+  <text x="400" y="460" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#1F2937">关键成功指标 (KPIs)</text>
+  
+  <!-- 指标卡片 -->
+  <rect x="100" y="480" width="150" height="60" fill="#FEF3C7" stroke="#F59E0B" stroke-width="2" rx="8"/>
+  <text x="175" y="500" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#92400E">引用频率</text>
+  <text x="175" y="515" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#92400E">目标：提升30%+</text>
+  <text x="175" y="530" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#92400E">监控：每周统计</text>
+  
+  <rect x="275" y="480" width="150" height="60" fill="#DBEAFE" stroke="#3B82F6" stroke-width="2" rx="8"/>
+  <text x="350" y="500" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#1E40AF">可见性排名</text>
+  <text x="350" y="515" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#1E40AF">目标：前3位</text>
+  <text x="350" y="530" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#1E40AF">监控：每日检查</text>
+  
+  <rect x="450" y="480" width="150" height="60" fill="#F0FDF4" stroke="#10B981" stroke-width="2" rx="8"/>
+  <text x="525" y="500" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#059669">流量质量</text>
+  <text x="525" y="515" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#059669">目标：转化率提升</text>
+  <text x="525" y="530" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#059669">监控：每月分析</text>
+  
+  <!-- 时间轴 -->
+  <line x1="50" y1="570" x2="750" y2="570" stroke="#D1D5DB" stroke-width="2"/>
+  
+  <!-- 时间节点 -->
+  <circle cx="150" cy="570" r="8" fill="#3B82F6"/>
+  <text x="150" y="590" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#374151">第1-2月</text>
+  
+  <circle cx="400" cy="570" r="8" fill="#10B981"/>
+  <text x="400" y="590" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#374151">第3-5月</text>
+  
+  <circle cx="650" cy="570" r="8" fill="#8B5CF6"/>
+  <text x="650" y="590" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#374151">第6月+</text>
+  
+  <!-- 箭头标记定义 -->
+  <defs>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#6B7280"/>
+    </marker>
+  </defs>
+</svg>

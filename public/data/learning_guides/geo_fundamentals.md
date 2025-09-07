@@ -129,7 +129,7 @@
 
 GEO并非要完全取代SEO，而是SEO在AI时代的自然演进。许多SEO的最佳实践，如创建权威内容、建立专业声誉等，在GEO中同样适用，只是实现方式需要调整。
 
-![图2：传统SEO与GEO的核心区别对比](../charts/seo_vs_geo_comparison.png)
+![图2：传统SEO与GEO的核心区别对比](../charts/seo_vs_geo_comparison.svg)
 
 *图2清晰对比了传统SEO时代和GEO时代在用户行为、技术架构和商业模式上的根本性差异。*
 
@@ -194,7 +194,7 @@ GEO并非要完全取代SEO，而是SEO在AI时代的自然演进。许多SEO的
 2. **在"增强"阶段被信任** - 建立内容的权威性和可信度
 3. **在"生成"阶段被引用** - 成为AI回答的信息来源
 
-![图1：AI搜索引擎工作原理与GEO优化要点](../charts/ai_search_workflow.png)
+![图1：AI搜索引擎工作原理与GEO优化要点](../charts/ai_search_workflow.svg)
 
 *图1展示了AI搜索引擎基于RAG架构的完整工作流程，以及GEO优化在各个阶段的重点任务。*
 
@@ -388,7 +388,7 @@ E-E-A-T（经验、专业知识、权威性、可信度）在GEO中比传统SEO�
 
 基于普林斯顿大学的权威研究，以下九种方法按效果分为三个等级：
 
-![图3：GEO九种优化方法效果对比](../charts/geo_optimization_methods_effectiveness.png)
+![图3：GEO九种优化方法效果对比](../charts/geo_optimization_methods_effectiveness.svg)
 
 *图3展示了九种GEO优化方法的实际效果对比，其中引用语句、统计数据和引用来源是效果最显著的三种方法。*
 
@@ -583,7 +583,7 @@ Schema标记是告诉AI"这个内容是什么"的结构化语言。
 
 #### 📊 第三阶段：监控、分析与迭代
 
-![图4：GEO三阶段实施流程图](../charts/geo_implementation_stages.png)
+![图4：GEO三阶段实施流程图](../charts/geo_implementation_stages.svg)
 
 *图4详细展示了GEO实施的三个阶段，每个阶段的核心任务和预期效果时间线。*
 
@@ -1211,7 +1211,7 @@ A: 小公司的GEO优势：
 - 客户价值：$10000-100000+
 - 预期ROI：400-800%
 
-![图5：不同行业GEO投资回报率对比](../charts/industry_roi_comparison.png)
+![图5：不同行业GEO投资回报率对比](../charts/industry_roi_comparison.svg)
 
 *图5对比了不同行业实施GEO策略的投资回报率和获客成本，B2B SaaS行业表现最优。*
 

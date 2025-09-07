@@ -31,7 +31,7 @@
 
 ## 🗺️ 学习路径图
 
-![GEO学习路径图](/workspace/charts/geo_learning_pathway_flowchart.png)
+![GEO学习路径图](../workspace/charts/geo_learning_pathway_flowchart.svg)
 
 *图1：GEO学习路径总体结构图，展示了5个学习层级的递进关系、检查点设置和核心技能发展*
 

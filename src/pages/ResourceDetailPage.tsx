@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import { useParams, Link } from 'react-router-dom'
+import ReactMarkdown from 'react-markdown'
+import remarkGfm from 'remark-gfm'
+import rehypeHighlight from 'rehype-highlight'
 import { 
   ArrowLeft, 
   Bookmark, 
@@ -13,6 +16,7 @@ import {
   Eye
 } from 'lucide-react'
 import { useLearning } from '@/contexts/LearningContext'
+import 'highlight.js/styles/github.css'
 
 export default function ResourceDetailPage() {
   const { category, file } = useParams<{ category: string; file: string }>()
@@ -214,21 +218,170 @@ export default function ResourceDetailPage() {
           <div className="lg:col-span-3">
             <article className="bg-white rounded-xl shadow-lg p-8">
               {/* Markdown内容渲染 */}
-              <div 
-                className="prose prose-lg prose-blue max-w-none"
-                dangerouslySetInnerHTML={{
-                  __html: content
-                    // 简单的Markdown转换
-                    .replace(/^# (.*$)/gim, '<h1 class="text-3xl font-bold text-gray-900 mb-6">$1</h1>')
-                    .replace(/^## (.*$)/gim, '<h2 class="text-2xl font-bold text-gray-900 mt-8 mb-4">$1</h2>')
-                    .replace(/^### (.*$)/gim, '<h3 class="text-xl font-bold text-gray-900 mt-6 mb-3">$1</h3>')
-                    .replace(/\*\*(.*?)\*\*/g, '<strong class="font-semibold text-gray-900">$1</strong>')
-                    .replace(/\*(.*?)\*/g, '<em class="italic">$1</em>')
-                    .replace(/^\- (.*$)/gim, '<li class="ml-4 mb-1">$1</li>')
-                    .replace(/\n\n/g, '</p><p class="mb-4 text-gray-700 leading-relaxed">')
-                    .replace(/^(.*)$/gim, '<p class="mb-4 text-gray-700 leading-relaxed">$1</p>')
-                }}
-              />
+              <div className="prose prose-lg prose-blue max-w-none markdown-content">
+                <ReactMarkdown
+                  remarkPlugins={[remarkGfm]}
+                  rehypePlugins={[rehypeHighlight]}
+                  components={{
+                    h1: ({ children }) => (
+                      <h1 className="text-3xl font-bold text-gray-900 mb-6 mt-8 first:mt-0">
+                        {children}
+                      </h1>
+                    ),
+                    h2: ({ children }) => (
+                      <h2 className="text-2xl font-bold text-gray-900 mt-8 mb-4">
+                        {children}
+                      </h2>
+                    ),
+                    h3: ({ children }) => (
+                      <h3 className="text-xl font-bold text-gray-900 mt-6 mb-3">
+                        {children}
+                      </h3>
+                    ),
+                    h4: ({ children }) => (
+                      <h4 className="text-lg font-semibold text-gray-900 mt-4 mb-2">
+                        {children}
+                      </h4>
+                    ),
+                    p: ({ children }) => (
+                      <p className="mb-4 text-gray-700 leading-relaxed">
+                        {children}
+                      </p>
+                    ),
+                    ul: ({ children }) => (
+                      <ul className="mb-4 ml-6 list-disc space-y-1">
+                        {children}
+                      </ul>
+                    ),
+                    ol: ({ children }) => (
+                      <ol className="mb-4 ml-6 list-decimal space-y-1">
+                        {children}
+                      </ol>
+                    ),
+                    li: ({ children }) => (
+                      <li className="text-gray-700 leading-relaxed">
+                        {children}
+                      </li>
+                    ),
+                    blockquote: ({ children }) => (
+                      <blockquote className="border-l-4 border-blue-500 pl-4 py-2 mb-4 bg-blue-50 italic text-gray-700">
+                        {children}
+                      </blockquote>
+                    ),
+                    code: ({ inline, children, className }) => {
+                      // 检查是否在pre标签内（代码块）
+                      const isCodeBlock = className && className.includes('language-');
+                      
+                      if (inline) {
+                        return (
+                          <code className="bg-gray-100 px-1 py-0.5 rounded text-sm font-mono text-gray-800">
+                            {children}
+                          </code>
+                        );
+                      }
+                      
+                      if (isCodeBlock) {
+                        // 代码块内的code标签，不设置背景色，继承pre的样式
+                        return (
+                          <code className={`${className} text-inherit`}>
+                            {children}
+                          </code>
+                        );
+                      }
+                      
+                      // 独立的代码块
+                      return (
+                        <code className="block bg-gray-100 p-4 rounded-lg text-sm font-mono overflow-x-auto text-gray-800">
+                          {children}
+                        </code>
+                      );
+                    },
+                    pre: ({ children }) => (
+                      <pre className="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto mb-4 border">
+                        {children}
+                      </pre>
+                    ),
+                    strong: ({ children }) => (
+                      <strong className="font-semibold text-gray-900">
+                        {children}
+                      </strong>
+                    ),
+                    em: ({ children }) => (
+                      <em className="italic text-gray-700">
+                        {children}
+                      </em>
+                    ),
+                    a: ({ href, children }) => (
+                      <a 
+                        href={href} 
+                        className="text-blue-600 hover:text-blue-800 underline"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        {children}
+                      </a>
+                    ),
+                    table: ({ children }) => (
+                      <div className="overflow-x-auto mb-4">
+                        <table className="min-w-full border border-gray-300">
+                          {children}
+                        </table>
+                      </div>
+                    ),
+                    thead: ({ children }) => (
+                      <thead className="bg-gray-50">
+                        {children}
+                      </thead>
+                    ),
+                    tbody: ({ children }) => (
+                      <tbody className="divide-y divide-gray-200">
+                        {children}
+                      </tbody>
+                    ),
+                    tr: ({ children }) => (
+                      <tr className="hover:bg-gray-50">
+                        {children}
+                      </tr>
+                    ),
+                    th: ({ children }) => (
+                      <th className="px-4 py-2 text-left font-semibold text-gray-900 border-b border-gray-300">
+                        {children}
+                      </th>
+                    ),
+                    td: ({ children }) => (
+                      <td className="px-4 py-2 text-gray-700 border-b border-gray-200">
+                        {children}
+                      </td>
+                    ),
+                    img: ({ src, alt }) => {
+                      // 处理相对路径，将 ../charts/ 转换为 /data/charts/，../workspace/charts/ 转换为 /workspace/charts/
+                      let imageSrc = src;
+                      if (src?.startsWith('../charts/')) {
+                        imageSrc = src.replace('../charts/', '/data/charts/');
+                      } else if (src?.startsWith('../workspace/charts/')) {
+                        imageSrc = src.replace('../workspace/charts/', '/workspace/charts/');
+                      }
+                      
+                      return (
+                        <img 
+                          src={imageSrc} 
+                          alt={alt} 
+                          className="max-w-full h-auto rounded-lg shadow-md my-6 mx-auto block"
+                          onError={(e) => {
+                            console.error('Image load error:', imageSrc);
+                            e.currentTarget.style.display = 'none';
+                          }}
+                        />
+                      );
+                    },
+                    hr: () => (
+                      <hr className="my-8 border-gray-300" />
+                    )
+                  }}
+                >
+                  {content}
+                </ReactMarkdown>
+              </div>
             </article>
           </div>
 

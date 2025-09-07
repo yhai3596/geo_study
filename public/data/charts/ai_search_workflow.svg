@@ -1,0 +1,119 @@
+<svg width="800" height="500" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="primaryGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#8B5CF6;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#7C3AED;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="secondaryGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#06B6D4;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#0891B2;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- 背景 -->
+  <rect width="800" height="500" fill="#F8FAFC"/>
+  
+  <!-- 标题 -->
+  <text x="400" y="30" text-anchor="middle" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#1F2937">AI搜索引擎工作原理与GEO优化要点</text>
+  
+  <!-- 步骤1：用户查询 -->
+  <circle cx="100" cy="100" r="40" fill="url(#primaryGradient)"/>
+  <text x="100" y="85" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="white">用户</text>
+  <text x="100" y="105" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="white">查询</text>
+  <text x="100" y="120" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="white">问题</text>
+  
+  <!-- 步骤2：语义理解 -->
+  <rect x="200" y="70" width="120" height="60" fill="url(#secondaryGradient)" rx="10"/>
+  <text x="260" y="90" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="white">语义理解</text>
+  <text x="260" y="110" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="white">意图识别</text>
+  
+  <!-- 步骤3：信息检索 -->
+  <rect x="360" y="70" width="120" height="60" fill="url(#primaryGradient)" rx="10"/>
+  <text x="420" y="90" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="white">多源检索</text>
+  <text x="420" y="110" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="white">RAG架构</text>
+  
+  <!-- 步骤4：内容整合 -->
+  <rect x="520" y="70" width="120" height="60" fill="url(#secondaryGradient)" rx="10"/>
+  <text x="580" y="90" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="white">内容整合</text>
+  <text x="580" y="110" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="white">答案生成</text>
+  
+  <!-- 步骤5：结果输出 -->
+  <circle cx="700" cy="100" r="40" fill="url(#primaryGradient)"/>
+  <text x="700" y="85" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="white">智能</text>
+  <text x="700" y="105" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="white">答案</text>
+  <text x="700" y="120" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="white">+引用</text>
+  
+  <!-- 连接箭头 -->
+  <path d="M 140 100 L 190 100" stroke="#6B7280" stroke-width="2" fill="none" marker-end="url(#arrowhead)"/>
+  <path d="M 320 100 L 350 100" stroke="#6B7280" stroke-width="2" fill="none" marker-end="url(#arrowhead)"/>
+  <path d="M 480 100 L 510 100" stroke="#6B7280" stroke-width="2" fill="none" marker-end="url(#arrowhead)"/>
+  <path d="M 640 100 L 660 100" stroke="#6B7280" stroke-width="2" fill="none" marker-end="url(#arrowhead)"/>
+  
+  <!-- GEO优化要点 -->
+  <text x="400" y="200" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#1F2937">GEO优化关键要点</text>
+  
+  <!-- 优化点1 -->
+  <rect x="50" y="230" width="150" height="80" fill="#EFF6FF" stroke="#3B82F6" stroke-width="2" rx="8"/>
+  <text x="125" y="250" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#1E40AF">内容权威性</text>
+  <text x="60" y="270" font-family="Arial, sans-serif" font-size="10" fill="#374151">• 专家观点</text>
+  <text x="60" y="285" font-family="Arial, sans-serif" font-size="10" fill="#374151">• 数据支撑</text>
+  <text x="60" y="300" font-family="Arial, sans-serif" font-size="10" fill="#374151">• 引用来源</text>
+  
+  <!-- 优化点2 -->
+  <rect x="220" y="230" width="150" height="80" fill="#F0FDF4" stroke="#10B981" stroke-width="2" rx="8"/>
+  <text x="295" y="250" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#059669">结构化内容</text>
+  <text x="230" y="270" font-family="Arial, sans-serif" font-size="10" fill="#374151">• 清晰标题</text>
+  <text x="230" y="285" font-family="Arial, sans-serif" font-size="10" fill="#374151">• 逻辑分层</text>
+  <text x="230" y="300" font-family="Arial, sans-serif" font-size="10" fill="#374151">• 要点突出</text>
+  
+  <!-- 优化点3 -->
+  <rect x="390" y="230" width="150" height="80" fill="#FEF3C7" stroke="#F59E0B" stroke-width="2" rx="8"/>
+  <text x="465" y="250" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#D97706">语义优化</text>
+  <text x="400" y="270" font-family="Arial, sans-serif" font-size="10" fill="#374151">• 自然语言</text>
+  <text x="400" y="285" font-family="Arial, sans-serif" font-size="10" fill="#374151">• 问答格式</text>
+  <text x="400" y="300" font-family="Arial, sans-serif" font-size="10" fill="#374151">• 上下文关联</text>
+  
+  <!-- 优化点4 -->
+  <rect x="560" y="230" width="150" height="80" fill="#FDF2F8" stroke="#EC4899" stroke-width="2" rx="8"/>
+  <text x="635" y="250" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#BE185D">技术标记</text>
+  <text x="570" y="270" font-family="Arial, sans-serif" font-size="10" fill="#374151">• Schema标记</text>
+  <text x="570" y="285" font-family="Arial, sans-serif" font-size="10" fill="#374151">• LLMs.txt</text>
+  <text x="570" y="300" font-family="Arial, sans-serif" font-size="10" fill="#374151">• 元数据优化</text>
+  
+  <!-- 数据流向 -->
+  <text x="400" y="360" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#1F2937">数据流向与优化机会</text>
+  
+  <!-- 数据源 -->
+  <rect x="100" y="380" width="100" height="40" fill="#E5E7EB" stroke="#6B7280" stroke-width="1" rx="5"/>
+  <text x="150" y="405" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#374151">网页内容</text>
+  
+  <rect x="220" y="380" width="100" height="40" fill="#E5E7EB" stroke="#6B7280" stroke-width="1" rx="5"/>
+  <text x="270" y="405" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#374151">知识库</text>
+  
+  <rect x="340" y="380" width="100" height="40" fill="#E5E7EB" stroke="#6B7280" stroke-width="1" rx="5"/>
+  <text x="390" y="405" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#374151">实时数据</text>
+  
+  <!-- AI处理中心 -->
+  <rect x="480" y="380" width="120" height="40" fill="url(#primaryGradient)" rx="5"/>
+  <text x="540" y="405" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="white">AI处理引擎</text>
+  
+  <!-- 输出结果 -->
+  <rect x="620" y="380" width="100" height="40" fill="#10B981" rx="5"/>
+  <text x="670" y="405" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="white">智能答案</text>
+  
+  <!-- 数据流箭头 -->
+  <path d="M 200 400 L 210 400" stroke="#6B7280" stroke-width="2" fill="none" marker-end="url(#arrowhead)"/>
+  <path d="M 320 400 L 330 400" stroke="#6B7280" stroke-width="2" fill="none" marker-end="url(#arrowhead)"/>
+  <path d="M 440 400 L 470 400" stroke="#6B7280" stroke-width="2" fill="none" marker-end="url(#arrowhead)"/>
+  <path d="M 600 400 L 610 400" stroke="#6B7280" stroke-width="2" fill="none" marker-end="url(#arrowhead)"/>
+  
+  <!-- 箭头标记定义 -->
+  <defs>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#6B7280"/>
+    </marker>
+  </defs>
+  
+  <!-- 底部说明 -->
+  <text x="400" y="460" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#6B7280">通过优化每个环节，提升内容在AI搜索中的可见性和引用频率</text>
+</svg>
