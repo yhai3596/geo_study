@@ -1,16 +1,16 @@
 {
-  "name": "react_repo",
+  "name": "geo-learning-platform",
   "private": true,
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "pnpm install --prefer-offline && vite",
+    "dev": "vite",
     "build": "rm -rf node_modules/.vite-temp && tsc -b && vite build",
-    "build:prod": "pnpm install --prefer-offline && rm -rf node_modules/.vite-temp && tsc -b && BUILD_MODE=prod vite build",
-    "lint": "pnpm install --prefer-offline && eslint .",
-    "preview": "pnpm install --prefer-offline && vite preview",
-    "install-deps": "pnpm install --prefer-offline",
-    "clean": "rm -rf node_modules .pnpm-store pnpm-lock.yaml && pnpm store prune"
+    "build:prod": "rm -rf node_modules/.vite-temp && tsc -b && BUILD_MODE=prod vite build",
+    "lint": "eslint .",
+    "preview": "vite preview",
+    "install-deps": "npm install",
+    "clean": "rm -rf node_modules package-lock.json && npm cache clean --force"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.10.0",
