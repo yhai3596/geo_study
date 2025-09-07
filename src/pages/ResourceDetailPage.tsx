@@ -268,9 +268,10 @@ export default function ResourceDetailPage() {
                         {children}
                       </blockquote>
                     ),
-                    code: ({ inline, children, className }) => {
+                    code: ({ children, className, ...props }) => {
                       // 检查是否在pre标签内（代码块）
                       const isCodeBlock = className && className.includes('language-');
+                      const inline = !isCodeBlock;
                       
                       if (inline) {
                         return (
