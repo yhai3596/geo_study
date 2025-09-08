@@ -10,9 +10,12 @@ import {
   Search,
   Menu,
   X,
-  Home
+  Home,
+  LogOut,
+  LogIn
 } from 'lucide-react'
 import { useLearning } from '@/contexts/LearningContext'
+import { useAuth } from '@/contexts/AuthContext'
 
 interface LayoutProps {
   children: ReactNode
@@ -32,6 +35,7 @@ export default function Layout({ children }: LayoutProps) {
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false)
   const [searchQuery, setSearchQuery] = useState('')
   const { userProfile } = useLearning()
+  const { user, signOut } = useAuth()
   const location = useLocation()
 
   return (
@@ -79,42 +83,73 @@ export default function Layout({ children }: LayoutProps) {
 
         {/* 用户信息卡片 */}
         <div className="px-6 py-4 border-b border-gray-200">
-          <div className="bg-gradient-to-r from-blue-50 to-green-50 rounded-lg p-3">
-            <div className="flex items-center space-x-3">
-              <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-green-500 rounded-full flex items-center justify-center">
-                <span className="text-white font-medium">
-                  {userProfile.name.charAt(0)}
-                </span>
+          {user ? (
+            <div className="bg-gradient-to-r from-blue-50 to-green-50 rounded-lg p-3">
+              <div className="flex items-center space-x-3">
+                <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-green-500 rounded-full flex items-center justify-center">
+                  <span className="text-white font-medium">
+                    {user.user_metadata?.full_name?.charAt(0) || user.email?.charAt(0) || 'U'}
+                  </span>
+                </div>
+                {!sidebarCollapsed && (
+                  <div className="flex-1 min-w-0">
+                    <p className="text-sm font-medium text-gray-900 truncate">
+                      {user.user_metadata?.full_name || user.email}
+                    </p>
+                    <p className="text-xs text-gray-500 capitalize">
+                      {userProfile.level === 'beginner' && '入门级'}
+                      {userProfile.level === 'intermediate' && '实操级'}
+                      {userProfile.level === 'expert' && '专家级'}
+                      {userProfile.level === 'specialized' && '专业化'}
+                    </p>
+                  </div>
+                )}
+                {!sidebarCollapsed && (
+                  <button
+                    onClick={signOut}
+                    className="p-1 text-gray-400 hover:text-gray-600 transition-colors"
+                    title="退出登录"
+                  >
+                    <LogOut className="w-4 h-4" />
+                  </button>
+                )}
               </div>
               {!sidebarCollapsed && (
-                <div className="flex-1 min-w-0">
-                  <p className="text-sm font-medium text-gray-900 truncate">
-                    {userProfile.name}
-                  </p>
-                  <p className="text-xs text-gray-500 capitalize">
-                    {userProfile.level === 'beginner' && '入门级'}
-                    {userProfile.level === 'intermediate' && '实操级'}
-                    {userProfile.level === 'expert' && '专家级'}
-                    {userProfile.level === 'specialized' && '专业化'}
-                  </p>
+                <div className="mt-3">
+                  <div className="flex justify-between text-xs text-gray-600 mb-1">
+                    <span>学习进度</span>
+                    <span>{userProfile.totalProgress}%</span>
+                  </div>
+                  <div className="w-full bg-gray-200 rounded-full h-2">
+                    <div 
+                      className="bg-gradient-to-r from-blue-500 to-green-500 h-2 rounded-full transition-all duration-300"
+                      style={{ width: `${userProfile.totalProgress}%` }}
+                    />
+                  </div>
                 </div>
               )}
             </div>
-            {!sidebarCollapsed && (
-              <div className="mt-3">
-                <div className="flex justify-between text-xs text-gray-600 mb-1">
-                  <span>学习进度</span>
-                  <span>{userProfile.totalProgress}%</span>
+          ) : (
+            <div className="bg-gradient-to-r from-gray-50 to-blue-50 rounded-lg p-3">
+              <div className="flex items-center space-x-3">
+                <div className="w-10 h-10 bg-gray-400 rounded-full flex items-center justify-center">
+                  <User className="w-5 h-5 text-white" />
                 </div>
-                <div className="w-full bg-gray-200 rounded-full h-2">
-                  <div 
-                    className="bg-gradient-to-r from-blue-500 to-green-500 h-2 rounded-full transition-all duration-300"
-                    style={{ width: `${userProfile.totalProgress}%` }}
-                  />
-                </div>
+                {!sidebarCollapsed && (
+                  <div className="flex-1">
+                    <p className="text-sm font-medium text-gray-900">未登录</p>
+                    <Link 
+                      to="/auth"
+                      className="text-xs text-blue-600 hover:text-blue-800 flex items-center mt-1"
+                    >
+                      <LogIn className="w-3 h-3 mr-1" />
+                      点击登录
+                    </Link>
+                  </div>
+                )}
               </div>
-            )}
-          </div>
+            </div>
+          )}
         </div>
 
         {/* 导航菜单 */}

@@ -9,6 +9,9 @@
 - 🛠️ **实用工具**: GEO分析工具和模板
 - 📊 **数据可视化**: 交互式图表和地图展示
 - 📱 **响应式设计**: 支持桌面和移动设备
+- 🔐 **用户认证**: 基于Supabase的安全认证系统
+- ☁️ **云端同步**: 学习进度和数据的云端存储与同步
+- 📦 **数据迁移**: 本地数据到云端的无缝迁移功能
 
 ## 技术栈
 
@@ -17,6 +20,8 @@
 - **样式**: Tailwind CSS + shadcn/ui
 - **状态管理**: React Context
 - **路由**: React Router
+- **后端服务**: Supabase (认证、数据库、实时同步)
+- **测试框架**: Vitest + Testing Library
 - **代码规范**: ESLint + TypeScript
 
 ## 开发环境要求
@@ -99,11 +104,32 @@ Vercel会自动使用以下配置：
 
 ### 环境变量
 
-如需配置环境变量，在Vercel项目设置中添加：
+#### Supabase配置
+
+本项目使用Supabase作为后端服务，需要配置以下环境变量：
+
+1. 复制 `.env.example` 文件为 `.env`：
+```bash
+cp .env.example .env
+```
+
+2. 在 `.env` 文件中配置Supabase信息：
+```
+VITE_SUPABASE_URL=your_supabase_project_url
+VITE_SUPABASE_ANON_KEY=your_supabase_anon_key
+```
+
+#### Vercel部署环境变量
+
+在Vercel项目设置中添加：
 
 ```
 NODE_ENV=production
+VITE_SUPABASE_URL=your_supabase_project_url
+VITE_SUPABASE_ANON_KEY=your_supabase_anon_key
 ```
+
+**注意**: 请确保在生产环境中使用正确的Supabase项目URL和密钥。
 
 ### 自定义域名
 
@@ -114,7 +140,10 @@ NODE_ENV=production
 ```
 src/
 ├── components/          # 可复用组件
+│   ├── auth/           # 认证相关组件
 │   ├── layout/         # 布局组件
+│   ├── ui/             # UI基础组件
+│   ├── DataMigration.tsx # 数据迁移组件
 │   └── ErrorBoundary.tsx
 ├── pages/              # 页面组件
 │   ├── HomePage.tsx
@@ -122,10 +151,17 @@ src/
 │   ├── ResourcesPage.tsx
 │   ├── CaseStudiesPage.tsx
 │   ├── ToolsPage.tsx
-│   └── ProfilePage.tsx
+│   ├── AuthPage.tsx    # 认证页面
+│   └── ProfilePage.tsx # 用户资料页面
 ├── contexts/           # React Context
+│   ├── AuthContext.tsx # 认证状态管理
+│   └── LearningContext.tsx # 学习数据管理
 ├── hooks/              # 自定义Hooks
 ├── lib/                # 工具函数
+│   ├── supabase.ts     # Supabase客户端配置
+│   └── utils.ts
+├── tests/              # 测试文件
+│   └── auth-integration.test.tsx
 └── App.tsx             # 主应用组件
 
 public/
@@ -136,6 +172,9 @@ public/
 │   ├── learning_resources/
 │   └── tools_templates/
 └── images/             # 图片资源
+
+database/
+└── schema.sql          # 数据库表结构
 ```
 
 ## 开发指南
@@ -148,6 +187,22 @@ npm run lint
 
 # 自动修复代码格式
 npm run lint:fix
+```
+
+### 测试
+
+```bash
+# 运行测试
+npm test
+
+# 监听模式运行测试
+npm run test:watch
+
+# 生成测试覆盖率报告
+npm run test:coverage
+
+# 启动测试UI界面
+npm run test:ui
 ```
 
 ### 类型检查

@@ -15,9 +15,14 @@ import {
   BarChart3,
   TrendingUp,
   Bookmark,
-  FileText
+  FileText,
+  RefreshCw,
+  Cloud,
+  CloudOff
 } from 'lucide-react'
 import { useLearning } from '@/contexts/LearningContext'
+import { useAuth } from '@/contexts/AuthContext'
+import DataMigration from '@/components/DataMigration'
 
 const achievements = [
   { id: 'first-step', title: '初学者', description: '完成首个学习模块', icon: Target, condition: 'complete-1-module' },
@@ -77,8 +82,10 @@ const AchievementCard = ({ achievement, isUnlocked }: { achievement: any; isUnlo
 }
 
 export default function ProfilePage() {
-  const { userProfile, learningProgress, updateProfile } = useLearning()
+  const { userProfile, learningProgress, updateProfile, syncData, isLoading } = useLearning()
+  const { user } = useAuth()
   const [isEditing, setIsEditing] = useState(false)
+  const [isSyncing, setIsSyncing] = useState(false)
   const [editForm, setEditForm] = useState({
     name: userProfile.name,
     email: userProfile.email
@@ -127,6 +134,19 @@ export default function ProfilePage() {
     setIsEditing(false)
   }
 
+  const handleSyncData = async () => {
+    if (!user) return
+    
+    setIsSyncing(true)
+    try {
+      await syncData()
+    } catch (error) {
+      console.error('同步数据失败:', error)
+    } finally {
+      setIsSyncing(false)
+    }
+  }
+
   const exportLearningData = () => {
     const data = {
       profile: userProfile,
@@ -170,33 +190,71 @@ export default function ProfilePage() {
           <div className="bg-white rounded-xl shadow-lg p-6">
             <div className="flex items-center justify-between mb-6">
               <h2 className="text-xl font-bold text-gray-900">个人信息</h2>
-              {!isEditing ? (
-                <button
-                  onClick={() => setIsEditing(true)}
-                  className="p-2 text-gray-500 hover:text-blue-500 transition-colors"
-                  title="编辑信息"
-                >
-                  <Edit3 className="w-5 h-5" />
-                </button>
-              ) : (
-                <div className="flex space-x-2">
+              <div className="flex items-center space-x-2">
+                {user && (
                   <button
-                    onClick={handleSaveProfile}
-                    className="p-2 text-green-500 hover:text-green-600 transition-colors"
-                    title="保存"
+                    onClick={handleSyncData}
+                    disabled={isSyncing || isLoading}
+                    className="p-2 text-blue-500 hover:text-blue-600 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                    title="同步云端数据"
                   >
-                    <Save className="w-5 h-5" />
+                    {isSyncing ? (
+                      <RefreshCw className="w-5 h-5 animate-spin" />
+                    ) : (
+                      <Cloud className="w-5 h-5" />
+                    )}
                   </button>
+                )}
+                {!isEditing ? (
                   <button
-                    onClick={handleCancelEdit}
-                    className="p-2 text-red-500 hover:text-red-600 transition-colors"
-                    title="取消"
+                    onClick={() => setIsEditing(true)}
+                    className="p-2 text-gray-500 hover:text-blue-500 transition-colors"
+                    title="编辑信息"
                   >
-                    <X className="w-5 h-5" />
+                    <Edit3 className="w-5 h-5" />
                   </button>
-                </div>
-              )}
+                ) : (
+                  <div className="flex space-x-2">
+                    <button
+                      onClick={handleSaveProfile}
+                      className="p-2 text-green-500 hover:text-green-600 transition-colors"
+                      title="保存"
+                    >
+                      <Save className="w-5 h-5" />
+                    </button>
+                    <button
+                      onClick={handleCancelEdit}
+                      className="p-2 text-red-500 hover:text-red-600 transition-colors"
+                      title="取消"
+                    >
+                      <X className="w-5 h-5" />
+                    </button>
+                  </div>
+                )}
+              </div>
             </div>
+            
+            {/* 云端同步状态指示器 */}
+            {user && (
+              <div className="mb-4 p-3 bg-blue-50 rounded-lg border border-blue-200">
+                <div className="flex items-center text-sm text-blue-700">
+                  <Cloud className="w-4 h-4 mr-2" />
+                  <span>已连接云端存储</span>
+                  {isLoading && (
+                    <RefreshCw className="w-4 h-4 ml-2 animate-spin" />
+                  )}
+                </div>
+              </div>
+            )}
+            
+            {!user && (
+              <div className="mb-4 p-3 bg-gray-50 rounded-lg border border-gray-200">
+                <div className="flex items-center text-sm text-gray-600">
+                  <CloudOff className="w-4 h-4 mr-2" />
+                  <span>使用本地存储</span>
+                </div>
+              </div>
+            )}
             
             <div className="text-center mb-6">
               <div className="w-20 h-20 bg-gradient-to-br from-blue-500 to-green-500 rounded-full flex items-center justify-center mx-auto mb-4">
@@ -291,6 +349,9 @@ export default function ProfilePage() {
             </div>
           </div>
 
+          {/* 数据迁移 */}
+          <DataMigration />
+          
           {/* 数据导出 */}
           <div className="bg-white rounded-xl shadow-lg p-6">
             <h3 className="text-xl font-bold text-gray-900 mb-4">数据管理</h3>
