@@ -42,8 +42,8 @@
    ```
 
 4. **配置域名类型**
-   - **主域名**: `geo-learning.com`
-   - **www域名**: `www.geo-learning.com`
+   - **主域名**: `geo-study001.vercel.app`
+   - **www域名**: `www.geo-study001.vercel.app`
    - **子域名**: `app.geo-learning.com`（可选）
 
 ### 步骤2：DNS配置
@@ -107,7 +107,7 @@ TTL: 3600
 2. **检查DNS传播**
    ```bash
    # 使用nslookup检查
-   nslookup geo-learning.com
+   nslookup geo-study001.vercel.app
    
    # 使用在线工具
    # https://www.whatsmydns.net/
