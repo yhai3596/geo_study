@@ -16,6 +16,8 @@ import {
   Eye
 } from 'lucide-react'
 import { useLearning } from '@/contexts/LearningContext'
+import CollapsibleSidebar from '@/components/layout/CollapsibleSidebar'
+import CollapsibleRightSidebar from '@/components/layout/CollapsibleRightSidebar'
 import 'highlight.js/styles/github.css'
 
 export default function ResourceDetailPage() {
@@ -24,6 +26,8 @@ export default function ResourceDetailPage() {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState('')
   const [readingProgress, setReadingProgress] = useState(0)
+  const [leftSidebarCollapsed, setLeftSidebarCollapsed] = useState(false)
+  const [rightSidebarCollapsed, setRightSidebarCollapsed] = useState(false)
   
   const { userProfile, addBookmark, removeBookmark, updateProgress, addNote } = useLearning()
   
@@ -151,7 +155,7 @@ export default function ResourceDetailPage() {
   }
 
   return (
-    <>
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50">
       {/* 阅读进度条 */}
       <div className="fixed top-0 left-0 w-full h-1 bg-gray-200 z-50">
         <div 
@@ -160,64 +164,73 @@ export default function ResourceDetailPage() {
         />
       </div>
 
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        {/* 顶部导航 */}
-        <div className="flex items-center justify-between mb-8">
-          <Link 
-            to="/resources"
-            className="inline-flex items-center text-gray-600 hover:text-gray-900 transition-colors"
-          >
-            <ArrowLeft className="w-4 h-4 mr-2" />
-            返回资源库
-          </Link>
-          
-          <div className="flex items-center space-x-4">
-            <div className="flex items-center text-sm text-gray-500">
-              <Eye className="w-4 h-4 mr-1" />
-              阅读进度 {readingProgress}%
+      {/* 左侧导航栏 - 桌面端显示 */}
+      <div className="hidden lg:block">
+        <CollapsibleSidebar 
+          onCollapseChange={setLeftSidebarCollapsed}
+        />
+      </div>
+
+      {/* 右侧功能栏 - 桌面端显示 */}
+      <div className="hidden lg:block">
+        <CollapsibleRightSidebar
+          readingProgress={readingProgress}
+          noteText={noteText}
+          onNoteChange={handleNoteChange}
+          onDownload={downloadContent}
+          onCollapseChange={setRightSidebarCollapsed}
+        />
+      </div>
+
+      {/* 主内容区域 */}
+      <div className={`transition-all duration-300 pb-20 lg:pb-0 lg:${
+        leftSidebarCollapsed ? 'ml-16' : 'ml-64'
+      } lg:${
+        rightSidebarCollapsed ? 'mr-16' : 'mr-80'
+      }`}>
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+          {/* 顶部导航 */}
+          <div className="flex items-center justify-between mb-8">
+            <div className="flex items-center space-x-4">
+              <Link 
+                to="/resources" 
+                className="flex items-center text-gray-600 hover:text-gray-900 transition-colors"
+              >
+                <ArrowLeft className="w-5 h-5 mr-2" />
+                返回资源列表
+              </Link>
             </div>
             
-            <button
-              onClick={toggleBookmark}
-              className={`
-                p-2 rounded-lg transition-colors
-                ${isBookmarked 
-                  ? 'bg-yellow-100 text-yellow-600 hover:bg-yellow-200' 
-                  : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
-                }
-              `}
-              title={isBookmarked ? '取消收藏' : '收藏'}
-            >
-              {isBookmarked ? (
-                <BookmarkCheck className="w-5 h-5" />
-              ) : (
-                <Bookmark className="w-5 h-5" />
-              )}
-            </button>
-            
-            <button
-              onClick={downloadContent}
-              className="p-2 bg-gray-100 text-gray-600 rounded-lg hover:bg-gray-200 transition-colors"
-              title="下载文档"
-            >
-              <Download className="w-5 h-5" />
-            </button>
-            
-            <button
-              onClick={shareResource}
-              className="p-2 bg-gray-100 text-gray-600 rounded-lg hover:bg-gray-200 transition-colors"
-              title="分享"
-            >
-              <Share2 className="w-5 h-5" />
-            </button>
+            <div className="flex items-center space-x-3">
+              <button
+                onClick={toggleBookmark}
+                className={`flex items-center px-3 py-2 rounded-lg transition-colors ${
+                  isBookmarked 
+                    ? 'bg-yellow-100 text-yellow-700 hover:bg-yellow-200' 
+                    : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+                }`}
+              >
+                {isBookmarked ? (
+                  <BookmarkCheck className="w-4 h-4 mr-2" />
+                ) : (
+                  <Bookmark className="w-4 h-4 mr-2" />
+                )}
+                {isBookmarked ? '已收藏' : '收藏'}
+              </button>
+              
+              <button
+                onClick={shareResource}
+                className="flex items-center px-3 py-2 bg-blue-100 text-blue-700 rounded-lg hover:bg-blue-200 transition-colors"
+              >
+                <Share2 className="w-4 h-4 mr-2" />
+                分享
+              </button>
+            </div>
           </div>
-        </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
-          {/* 主内容 */}
-          <div className="lg:col-span-3">
-            <article className="bg-white rounded-xl shadow-lg p-8">
-              {/* Markdown内容渲染 */}
+          {/* 文档内容 */}
+          <article className="bg-white rounded-xl shadow-lg overflow-hidden">
+            <div className="p-8">
               <div className="prose prose-lg prose-blue max-w-none markdown-content">
                 <ReactMarkdown
                   remarkPlugins={[remarkGfm]}
@@ -383,91 +396,68 @@ export default function ResourceDetailPage() {
                   {content}
                 </ReactMarkdown>
               </div>
-            </article>
+            </div>
+          </article>
+        </div>
+      </div>
+
+      {/* 移动端底部功能栏 */}
+      <div className="lg:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 p-4 z-40">
+        <div className="flex items-center justify-between">
+          {/* 学习进度 */}
+          <div className="flex items-center space-x-3">
+            <div className="relative w-12 h-12">
+              <svg className="w-12 h-12 transform -rotate-90" viewBox="0 0 36 36">
+                <path
+                  d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
+                  fill="none"
+                  stroke="#e5e7eb"
+                  strokeWidth="2"
+                />
+                <path
+                  d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
+                  fill="none"
+                  stroke="#3b82f6"
+                  strokeWidth="2"
+                  strokeDasharray={`${readingProgress}, 100`}
+                />
+              </svg>
+              <div className="absolute inset-0 flex items-center justify-center">
+                <span className="text-xs font-semibold text-gray-700">{Math.round(readingProgress)}%</span>
+              </div>
+            </div>
+            <span className="text-sm text-gray-600">学习进度</span>
           </div>
 
-          {/* 侧边栏 */}
-          <div className="lg:col-span-1 space-y-6">
-            {/* 学习进度 */}
-            <div className="bg-white rounded-xl shadow-md p-6">
-              <h3 className="text-lg font-semibold text-gray-900 mb-4">学习进度</h3>
-              <div className="text-center mb-4">
-                <div className="relative w-20 h-20 mx-auto">
-                  <svg className="w-20 h-20 transform -rotate-90" viewBox="0 0 36 36">
-                    <path
-                      d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
-                      fill="none"
-                      stroke="#e5e7eb"
-                      strokeWidth="3"
-                    />
-                    <path
-                      d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
-                      fill="none"
-                      stroke="#3b82f6"
-                      strokeWidth="3"
-                      strokeDasharray={`${readingProgress}, 100`}
-                      strokeLinecap="round"
-                    />
-                  </svg>
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <span className="text-lg font-bold text-gray-900">{readingProgress}%</span>
-                  </div>
-                </div>
-              </div>
-              
-              {readingProgress >= 95 ? (
-                <div className="flex items-center justify-center text-green-600 font-medium">
-                  <CheckCircle className="w-5 h-5 mr-2" />
-                  已完成学习
-                </div>
-              ) : (
-                <div className="text-center text-gray-600">
-                  继续阅读完成学习
-                </div>
-              )}
-            </div>
-
-            {/* 学习笔记 */}
-            <div className="bg-white rounded-xl shadow-md p-6">
-              <h3 className="text-lg font-semibold text-gray-900 mb-4">学习笔记</h3>
-              <textarea
-                value={noteText}
-                onChange={(e) => handleNoteChange(e.target.value)}
-                placeholder="记录你的学习心得和重点..."
-                className="w-full h-32 p-3 border border-gray-300 rounded-lg resize-none focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-              />
-              <p className="text-xs text-gray-500 mt-2">
-                笔记会自动保存到本地存储
-              </p>
-            </div>
-
-            {/* 快速操作 */}
-            <div className="bg-white rounded-xl shadow-md p-6">
-              <h3 className="text-lg font-semibold text-gray-900 mb-4">快速操作</h3>
-              <div className="space-y-3">
-                <button
-                  onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-                  className="w-full text-left px-3 py-2 text-sm text-gray-600 hover:bg-gray-100 rounded-lg transition-colors"
-                >
-                  回到顶部
-                </button>
-                <button
-                  onClick={() => window.scrollTo({ top: document.documentElement.scrollHeight, behavior: 'smooth' })}
-                  className="w-full text-left px-3 py-2 text-sm text-gray-600 hover:bg-gray-100 rounded-lg transition-colors"
-                >
-                  到页面底部
-                </button>
-                <button
-                  onClick={downloadContent}
-                  className="w-full text-left px-3 py-2 text-sm text-gray-600 hover:bg-gray-100 rounded-lg transition-colors"
-                >
-                  下载文档
-                </button>
-              </div>
-            </div>
+          {/* 快速操作按钮 */}
+          <div className="flex items-center space-x-2">
+            <button
+              onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+              className="p-2 bg-blue-50 text-blue-600 rounded-lg hover:bg-blue-100 transition-colors"
+            >
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 10l7-7m0 0l7 7m-7-7v18" />
+              </svg>
+            </button>
+            <button
+              onClick={() => window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' })}
+              className="p-2 bg-blue-50 text-blue-600 rounded-lg hover:bg-blue-100 transition-colors"
+            >
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+              </svg>
+            </button>
+            <button
+              onClick={downloadContent}
+              className="p-2 bg-green-50 text-green-600 rounded-lg hover:bg-green-100 transition-colors"
+            >
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+              </svg>
+            </button>
           </div>
         </div>
       </div>
-    </>
+    </div>
   )
 }

@@ -29,6 +29,7 @@ const navigation = [
 
 export default function Layout({ children }: LayoutProps) {
   const [sidebarOpen, setSidebarOpen] = useState(false)
+  const [sidebarCollapsed, setSidebarCollapsed] = useState(false)
   const [searchQuery, setSearchQuery] = useState('')
   const { userProfile } = useLearning()
   const location = useLocation()
@@ -45,24 +46,35 @@ export default function Layout({ children }: LayoutProps) {
 
       {/* 侧边栏 */}
       <div className={`
-        fixed inset-y-0 left-0 z-50 w-64 bg-white shadow-xl transform transition-transform duration-300 ease-in-out lg:translate-x-0 lg:static lg:inset-0
-        ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'}
+        fixed inset-y-0 left-0 z-50 bg-white shadow-xl transform transition-all duration-300 ease-in-out lg:translate-x-0
+        ${sidebarCollapsed ? 'w-16' : 'w-64'}
+        ${sidebarOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'}
       `}>
         <div className="flex items-center justify-between px-6 py-4 border-b border-gray-200">
           <Link to="/" className="flex items-center space-x-2">
             <div className="w-8 h-8 bg-gradient-to-br from-blue-600 to-green-600 rounded-lg flex items-center justify-center">
               <BookOpen className="w-5 h-5 text-white" />
             </div>
-            <span className="text-xl font-bold bg-gradient-to-r from-blue-600 to-green-600 bg-clip-text text-transparent">
-              GEO学习库
-            </span>
+            {!sidebarCollapsed && (
+              <span className="text-xl font-bold bg-gradient-to-r from-blue-600 to-green-600 bg-clip-text text-transparent">
+                GEO学习库
+              </span>
+            )}
           </Link>
-          <button
-            onClick={() => setSidebarOpen(false)}
-            className="lg:hidden text-gray-500 hover:text-gray-700"
-          >
-            <X className="w-6 h-6" />
-          </button>
+          <div className="flex items-center space-x-2">
+            <button
+              onClick={() => setSidebarCollapsed(!sidebarCollapsed)}
+              className="hidden lg:block text-gray-500 hover:text-gray-700 p-1 rounded-md hover:bg-gray-100"
+            >
+              <Menu className="w-5 h-5" />
+            </button>
+            <button
+              onClick={() => setSidebarOpen(false)}
+              className="lg:hidden text-gray-500 hover:text-gray-700"
+            >
+              <X className="w-6 h-6" />
+            </button>
+          </div>
         </div>
 
         {/* 用户信息卡片 */}
@@ -74,30 +86,34 @@ export default function Layout({ children }: LayoutProps) {
                   {userProfile.name.charAt(0)}
                 </span>
               </div>
-              <div className="flex-1 min-w-0">
-                <p className="text-sm font-medium text-gray-900 truncate">
-                  {userProfile.name}
-                </p>
-                <p className="text-xs text-gray-500 capitalize">
-                  {userProfile.level === 'beginner' && '入门级'}
-                  {userProfile.level === 'intermediate' && '实操级'}
-                  {userProfile.level === 'expert' && '专家级'}
-                  {userProfile.level === 'specialized' && '专业化'}
-                </p>
-              </div>
+              {!sidebarCollapsed && (
+                <div className="flex-1 min-w-0">
+                  <p className="text-sm font-medium text-gray-900 truncate">
+                    {userProfile.name}
+                  </p>
+                  <p className="text-xs text-gray-500 capitalize">
+                    {userProfile.level === 'beginner' && '入门级'}
+                    {userProfile.level === 'intermediate' && '实操级'}
+                    {userProfile.level === 'expert' && '专家级'}
+                    {userProfile.level === 'specialized' && '专业化'}
+                  </p>
+                </div>
+              )}
             </div>
-            <div className="mt-3">
-              <div className="flex justify-between text-xs text-gray-600 mb-1">
-                <span>学习进度</span>
-                <span>{userProfile.totalProgress}%</span>
+            {!sidebarCollapsed && (
+              <div className="mt-3">
+                <div className="flex justify-between text-xs text-gray-600 mb-1">
+                  <span>学习进度</span>
+                  <span>{userProfile.totalProgress}%</span>
+                </div>
+                <div className="w-full bg-gray-200 rounded-full h-2">
+                  <div 
+                    className="bg-gradient-to-r from-blue-500 to-green-500 h-2 rounded-full transition-all duration-300"
+                    style={{ width: `${userProfile.totalProgress}%` }}
+                  />
+                </div>
               </div>
-              <div className="w-full bg-gray-200 rounded-full h-2">
-                <div 
-                  className="bg-gradient-to-r from-blue-500 to-green-500 h-2 rounded-full transition-all duration-300"
-                  style={{ width: `${userProfile.totalProgress}%` }}
-                />
-              </div>
-            </div>
+            )}
           </div>
         </div>
 
@@ -118,25 +134,44 @@ export default function Layout({ children }: LayoutProps) {
                       ? 'bg-gradient-to-r from-blue-500 to-green-500 text-white shadow-lg'
                       : 'text-gray-700 hover:bg-gray-100 hover:text-gray-900'
                   }
+                  ${sidebarCollapsed ? 'justify-center' : ''}
                 `}
+                title={sidebarCollapsed ? item.name : undefined}
               >
                 <Icon className={`
-                  mr-3 h-5 w-5 transition-colors duration-200
+                  ${sidebarCollapsed ? '' : 'mr-3'} h-5 w-5 transition-colors duration-200
                   ${isActive ? 'text-white' : 'text-gray-500 group-hover:text-gray-700'}
                 `} />
-                {item.name}
+                {!sidebarCollapsed && item.name}
               </Link>
             )
           })}
         </nav>
       </div>
 
+      {/* 移动端遮罩层 */}
+      {sidebarOpen && (
+        <div 
+          className="fixed inset-0 bg-black bg-opacity-50 z-40 lg:hidden"
+          onClick={() => setSidebarOpen(false)}
+        />
+      )}
+
       {/* 主内容区 */}
-      <div className="lg:ml-64 flex flex-col min-h-screen">
+      <div className={`flex flex-col min-h-screen transition-all duration-300 ${
+        sidebarCollapsed ? 'lg:ml-16' : 'lg:ml-64'
+      }`}>
         {/* 顶部导航栏 */}
-        <header className="bg-white shadow-sm border-b border-gray-200 sticky top-0 z-30">
-          <div className="px-4 sm:px-6 lg:px-8">
-            <div className="flex items-center justify-between h-16">
+          <header className="bg-white shadow-sm border-b border-gray-200 sticky top-0 z-30">
+            <div className="px-4 sm:px-6 lg:px-8">
+              <div className="flex justify-between items-center h-16">
+                {/* 移动端菜单按钮 */}
+                <button
+                  onClick={() => setSidebarOpen(true)}
+                  className="lg:hidden text-gray-500 hover:text-gray-700 p-2 rounded-md hover:bg-gray-100"
+                >
+                  <Menu className="w-6 h-6" />
+                </button>
               <div className="flex items-center space-x-4">
                 <button
                   onClick={() => setSidebarOpen(true)}
