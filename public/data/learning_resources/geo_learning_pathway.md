@@ -67,6 +67,11 @@
 - 成功指标的重新定义：CTR vs 引用频率
 
 **模块1.3：AI搜索引擎市场现状**
+
+![图15：GEO技术架构图](../charts/geo_technical_architecture.png)
+
+*图15展示了GEO技术体系的完整架构，包括数据层、算法层、应用层和用户层的关系。*
+
 - 主流AI搜索引擎对比：ChatGPT、Perplexity、Google Gemini
 - 市场份额分析：ChatGPT（60.4%）领先的竞争格局
 - 用户采用趋势：79%消费者预计频繁使用AI搜索
@@ -240,6 +245,11 @@
   - 引用友好的排版设计
 
 **模块3.3：工具平台使用与整合**
+
+![图16：GEO性能对比分析](../charts/geo_performance_comparison.png)
+
+*图16展示了不同GEO优化方法和工具的性能对比，帮助学习者选择最适合的优化策略。*
+
 - **主流GEO工具对比**
   - Profound：企业级GEO分析平台
   - Goodie AI：内容优化助手

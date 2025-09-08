@@ -29,7 +29,7 @@ def setup_matplotlib_for_plotting():
 
     # Configure platform-appropriate fonts for cross-platform compatibility
     # Must be set after style.use, otherwise will be overridden by style configuration
-    plt.rcParams["font.sans-serif"] = ["Noto Sans CJK SC", "WenQuanYi Zen Hei", "PingFang SC", "Arial Unicode MS", "Hiragino Sans GB"]
+    plt.rcParams["font.sans-serif"] = ["Microsoft YaHei", "SimHei", "SimSun", "Noto Sans CJK SC", "WenQuanYi Zen Hei", "PingFang SC", "Arial Unicode MS", "Hiragino Sans GB"]
     plt.rcParams["axes.unicode_minus"] = False
 
 def create_geo_market_size_chart():
@@ -66,7 +66,7 @@ def create_geo_market_size_chart():
                     xytext=(0,10), ha='center', fontsize=9)
     
     plt.tight_layout()
-    plt.savefig('/workspace/charts/geo_market_size_trends.png', dpi=300, bbox_inches='tight')
+    plt.savefig('../public/workspace/charts/geo_market_size_trends.png', dpi=300, bbox_inches='tight')
     plt.close()
     print("✓ GEO市场规模趋势图已生成")
 
@@ -94,7 +94,7 @@ def create_cagr_comparison_chart():
     plt.ylim(0, max(cagrs) * 1.2)
     plt.grid(True, alpha=0.3, axis='y')
     plt.tight_layout()
-    plt.savefig('/workspace/charts/geo_cagr_comparison.png', dpi=300, bbox_inches='tight')
+    plt.savefig('../public/workspace/charts/geo_cagr_comparison.png', dpi=300, bbox_inches='tight')
     plt.close()
     print("✓ CAGR对比图已生成")
 
@@ -131,7 +131,7 @@ def create_technology_adoption_timeline():
     plt.ylim(0, 100)
     plt.grid(True, alpha=0.3, axis='y')
     plt.tight_layout()
-    plt.savefig('/workspace/charts/geo_technology_adoption_timeline.png', dpi=300, bbox_inches='tight')
+    plt.savefig('../public/workspace/charts/geo_technology_adoption_timeline.png', dpi=300, bbox_inches='tight')
     plt.close()
     print("✓ 技术演进时间线图已生成")
 
@@ -156,7 +156,7 @@ def create_application_domains_pie():
     
     plt.axis('equal')
     plt.tight_layout()
-    plt.savefig('/workspace/charts/geo_application_domains.png', dpi=300, bbox_inches='tight')
+    plt.savefig('../public/workspace/charts/geo_application_domains.png', dpi=300, bbox_inches='tight')
     plt.close()
     print("✓ 应用领域分布图已生成")
 
@@ -193,7 +193,7 @@ def create_regional_market_comparison():
                 f'{rate}%', ha='center', va='bottom', fontsize=10)
     
     plt.tight_layout()
-    plt.savefig('/workspace/charts/geo_regional_market_comparison.png', dpi=300, bbox_inches='tight')
+    plt.savefig('../public/workspace/charts/geo_regional_market_comparison.png', dpi=300, bbox_inches='tight')
     plt.close()
     print("✓ 地区市场对比图已生成")
 
@@ -236,7 +236,7 @@ def create_technology_trend_matrix():
     plt.text(95, 65, '低潜力\n高成熟度', fontsize=12, ha='center', bbox=dict(boxstyle="round", facecolor='lightyellow'))
     
     plt.tight_layout()
-    plt.savefig('/workspace/charts/geo_technology_trend_matrix.png', dpi=300, bbox_inches='tight')
+    plt.savefig('../public/workspace/charts/geo_technology_trend_matrix.png', dpi=300, bbox_inches='tight')
     plt.close()
     print("✓ 技术趋势矩阵图已生成")
 
@@ -248,7 +248,7 @@ def main():
     setup_matplotlib_for_plotting()
     
     # 确保charts目录存在
-    Path('/workspace/charts').mkdir(exist_ok=True)
+    Path('../public/workspace/charts').mkdir(parents=True, exist_ok=True)
     
     # 生成各种图表
     create_geo_market_size_chart()
@@ -259,7 +259,7 @@ def main():
     create_technology_trend_matrix()
     
     print("\n所有图表生成完成！")
-    print("图表保存在 /workspace/charts/ 目录下")
+    print("图表保存在 ../public/workspace/charts/ 目录下")
 
 if __name__ == "__main__":
     main()

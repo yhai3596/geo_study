@@ -21,7 +21,7 @@ def setup_matplotlib_for_plotting():
 
     # Configure platform-appropriate fonts for cross-platform compatibility
     # Must be set after style.use, otherwise will be overridden by style configuration
-    plt.rcParams["font.sans-serif"] = ["Noto Sans CJK SC", "WenQuanYi Zen Hei", "PingFang SC", "Arial Unicode MS", "Hiragino Sans GB"]
+    plt.rcParams["font.sans-serif"] = ["Microsoft YaHei", "SimHei", "SimSun", "Noto Sans CJK SC", "WenQuanYi Zen Hei", "PingFang SC", "Arial Unicode MS", "Hiragino Sans GB"]
     plt.rcParams["axes.unicode_minus"] = False
 
 # Setup matplotlib
@@ -100,7 +100,7 @@ def create_technology_adoption_timeline():
            bbox=dict(boxstyle='round,pad=0.3', facecolor='lightgray', alpha=0.5))
     
     plt.tight_layout()
-    plt.savefig('/workspace/charts/technology_adoption_timeline.png', dpi=300, bbox_inches='tight')
+    plt.savefig('../public/workspace/charts/technology_adoption_timeline.png', dpi=300, bbox_inches='tight')
     plt.close()
     
     print("已创建技术采用时间线图: technology_adoption_timeline.png")
@@ -159,7 +159,7 @@ def create_market_share_evolution():
     
     plt.suptitle('三个技术时代的市场格局演变', fontsize=16, fontweight='bold', y=1.02)
     plt.tight_layout()
-    plt.savefig('/workspace/charts/market_share_evolution.png', dpi=300, bbox_inches='tight')
+    plt.savefig('../public/workspace/charts/market_share_evolution.png', dpi=300, bbox_inches='tight')
     plt.close()
     
     print("已创建市场份额演变图: market_share_evolution.png")
@@ -224,7 +224,7 @@ def create_development_speed_comparison():
                fontsize=12, fontweight='bold', color='red')
     
     plt.tight_layout()
-    plt.savefig('/workspace/charts/development_speed_comparison.png', dpi=300, bbox_inches='tight')
+    plt.savefig('../public/workspace/charts/development_speed_comparison.png', dpi=300, bbox_inches='tight')
     plt.close()
     
     print("已创建发展速度对比图: development_speed_comparison.png")
@@ -328,7 +328,7 @@ def create_roi_business_impact():
     
     plt.suptitle('技术商业化进程与投资回报对比分析', fontsize=16, fontweight='bold', y=0.98)
     plt.tight_layout()
-    plt.savefig('/workspace/charts/roi_business_impact_comparison.png', dpi=300, bbox_inches='tight')
+    plt.savefig('../public/workspace/charts/roi_business_impact_comparison.png', dpi=300, bbox_inches='tight')
     plt.close()
     
     print("已创建投资回报率和商业影响对比图: roi_business_impact_comparison.png")
@@ -380,7 +380,7 @@ def create_comprehensive_radar_chart():
     ax.legend(loc='upper right', bbox_to_anchor=(0.1, 0.1))
     
     plt.tight_layout()
-    plt.savefig('/workspace/charts/comprehensive_radar_comparison.png', dpi=300, bbox_inches='tight')
+    plt.savefig('../public/workspace/charts/comprehensive_radar_comparison.png', dpi=300, bbox_inches='tight')
     plt.close()
     
     print("已创建综合对比雷达图: comprehensive_radar_comparison.png")
@@ -396,4 +396,4 @@ if __name__ == "__main__":
     create_comprehensive_radar_chart()
     
     print("\n所有图表创建完成！")
-    print("图表文件保存在 /workspace/charts/ 目录下")
+    print("图表文件保存在 ../public/workspace/charts/ 目录下")
