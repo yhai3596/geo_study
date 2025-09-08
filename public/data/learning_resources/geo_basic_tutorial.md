@@ -161,7 +161,7 @@ GEO是一个以创作者为中心的优化框架，旨在**提高网站内容在
 
 ### 3.1 RAG架构深度解析
 
-![图12：技术采用时间线对比](../charts/technology_adoption_timeline.png)
+![图12：技术采用时间线对比](../workspace/charts/technology_adoption_timeline.png)
 
 *图12展示了从传统搜索到AI搜索的技术演进历程，突出了关键技术节点和发展趋势。*
 
@@ -803,7 +803,7 @@ Xponent21开发了一套系统化框架，这是GEO成功的关键：
 
 ### 7.1 工具生态系统概览
 
-![图13：市场份额演进趋势](../charts/market_share_evolution.png)
+![图13：市场份额演进趋势](../workspace/charts/market_share_evolution.png)
 
 *图13展示了主要AI搜索平台和GEO工具的市场份额变化，反映了行业发展动态。*
 
@@ -1031,7 +1031,7 @@ GEO周度监控报告
 
 ### 8.2 市场格局变化预测
 
-![图14：开发速度对比分析](../charts/development_speed_comparison.png)
+![图14：开发速度对比分析](../workspace/charts/development_speed_comparison.png)
 
 *图14展示了不同AI搜索平台和GEO技术的开发迭代速度，帮助企业制定技术投资策略。*
 

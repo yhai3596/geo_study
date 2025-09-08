@@ -68,7 +68,7 @@
 
 **模块1.3：AI搜索引擎市场现状**
 
-![图15：GEO技术架构图](../charts/geo_technical_architecture.png)
+![图15：GEO技术架构图](../workspace/charts/geo_technology_trend_matrix.png)
 
 *图15展示了GEO技术体系的完整架构，包括数据层、算法层、应用层和用户层的关系。*
 
@@ -246,7 +246,7 @@
 
 **模块3.3：工具平台使用与整合**
 
-![图16：GEO性能对比分析](../charts/geo_performance_comparison.png)
+![图16：GEO性能对比分析](../workspace/charts/comprehensive_radar_comparison.png)
 
 *图16展示了不同GEO优化方法和工具的性能对比，帮助学习者选择最适合的优化策略。*
 

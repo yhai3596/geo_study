@@ -81,11 +81,11 @@
 - **GEO服务市场**：预计2031年达到73亿美元，年复合增长率34%
 - **用户采用速度**：79%的消费者预计未来一年会频繁使用AI搜索
 
-![图6：GEO市场规模增长趋势](../charts/geo_market_size_trends.png)
+![图6：GEO市场规模增长趋势](../workspace/charts/geo_market_size_trends.png)
 
 *图6展示了GEO相关市场从2024年到2033年的预期增长轨迹，显示出巨大的商业机会。*
 
-![图7：GEO市场复合年增长率对比](../charts/geo_cagr_comparison.png)
+![图7：GEO市场复合年增长率对比](../workspace/charts/geo_cagr_comparison.png)
 
 *图7对比了GEO市场与其他数字营销领域的复合年增长率，突出了GEO的高增长潜力。*
 
@@ -296,7 +296,7 @@ GEO并非要完全取代SEO，而是SEO在AI时代的自然演进。许多SEO的
 
 #### 🎯 技术术语
 
-![图8：GEO技术采用时间线](../charts/geo_technology_adoption_timeline.png)
+![图8：GEO技术采用时间线](../workspace/charts/geo_technology_adoption_timeline.png)
 
 *图8展示了从语义网到现代GEO技术的发展历程，帮助理解技术演进脉络。*
 
@@ -1157,7 +1157,7 @@ A: 小公司的GEO优势：
 
 ### 7.2 GEO投资回报预期
 
-![图9：GEO应用领域分布](../charts/geo_application_domains.png)
+![图9：GEO应用领域分布](../workspace/charts/geo_application_domains.png)
 
 *图9展示了GEO在不同行业和应用领域的分布情况，B2B SaaS和电商零售是主要应用场景。*
 
@@ -1298,11 +1298,11 @@ A: 小公司的GEO优势：
 
 #### 🚀 中期发展（2026-2028）
 
-![图10：GEO区域市场对比](../charts/geo_regional_market_comparison.png)
+![图10：GEO区域市场对比](../workspace/charts/geo_regional_market_comparison.png)
 
 *图10展示了全球不同区域GEO市场的发展水平和增长潜力，北美和亚太地区领先。*
 
-![图11：GEO技术趋势矩阵](../charts/geo_technology_trend_matrix.png)
+![图11：GEO技术趋势矩阵](../workspace/charts/geo_technology_trend_matrix.png)
 
 *图11通过技术成熟度和市场影响力两个维度，分析了GEO相关技术的发展趋势和投资价值。*
 
