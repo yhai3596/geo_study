@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
+import ReactMarkdown from 'react-markdown'
+import remarkGfm from 'remark-gfm'
 import { 
   TrendingUp, 
   AlertTriangle, 
@@ -33,6 +35,8 @@ interface CaseStudy {
   }
   difficulty: 'beginner' | 'intermediate' | 'expert'
   tags: string[]
+  contentFile?: string
+  isMarkdownContent?: boolean
 }
 
 const caseStudies: CaseStudy[] = [
@@ -112,12 +116,99 @@ const caseStudies: CaseStudy[] = [
   }
 ]
 
+// Markdown案例数据
+const markdownCases: CaseStudy[] = [
+  {
+    id: 'success-stories-collection',
+    title: 'GEO成功案例分析库',
+    company: '多家企业',
+    industry: '跨行业',
+    type: 'success',
+    duration: '综合分析',
+    results: '涵盖标杆案例和最佳实践，AI来源访客转化率高达27%',
+    description: '基于深度分析报告的成功案例研究，包含不同行业、不同规模企业的详细实施案例。涵盖B2B SaaS、电商、内容媒体等多个行业的标杆案例。',
+    keyLearnings: [
+      '卓越ROI表现：AI来源访客转化率高达27%，相比传统搜索提升1,186%',
+      '快速增长实现：标杆案例在4-6个月内实现数百倍流量增长',
+      '系统化方法论：所有成功案例都采用分阶段、标准化实施框架',
+      '跨行业适用性：从B2B SaaS到电商都能产生显著效果'
+    ],
+    difficulty: 'intermediate',
+    tags: ['综合案例', '最佳实践', '跨行业', '深度分析', 'ROI优化'],
+    contentFile: '/data/case_studies/success_stories.md',
+    isMarkdownContent: true
+  },
+  {
+    id: 'failure-analysis-collection',
+    title: 'GEO实施失败案例分析',
+    company: '34家企业',
+    industry: '跨行业',
+    type: 'failure',
+    duration: '深度研究',
+    results: '94%的GEO实施失败源于可预防的错误，提供62项预防措施',
+    description: '基于34个具体失败案例的深度分析，系统总结GEO实施过程中的常见错误、失败模式和预防措施。帮助企业避免重复性错误。',
+    keyLearnings: [
+      '技术基础缺陷：34%的AI爬虫请求导致404错误',
+      '策略性误判：78%的企业仍将GEO视为传统SEO延伸',
+      '监测体系缺失：85%的企业无法准确追踪AI来源流量',
+      '投资回报失效：实施错误企业平均损失67%潜在收益'
+    ],
+    difficulty: 'intermediate',
+    tags: ['失败教训', '预防措施', '风险管控', '错误分析'],
+    contentFile: '/data/case_studies/failure_analysis.md',
+    isMarkdownContent: true
+  },
+  {
+    id: 'industry-best-practices',
+    title: '不同行业GEO最佳实践',
+    company: '127家企业',
+    industry: '六大核心行业',
+    type: 'best-practice',
+    duration: '18个月跟踪',
+    results: 'B2B SaaS获客成本仅$249，电商AI推荐订单价值提升23%',
+    description: '基于127家企业18个月跟踪数据，为六大核心行业提供系统性GEO实施指南。每个行业都有清晰的ROI数据支撑。',
+    keyLearnings: [
+      'B2B SaaS行业表现最优：获客成本$249，ROI达4.2倍',
+      '电商零售转化最快：平均11天决策周期',
+      '专业服务线索质量最高：8.9/10评分',
+      '早期采用者正在构建难以逾越的竞争壁垒'
+    ],
+    difficulty: 'expert',
+    tags: ['行业实践', '数据驱动', 'ROI分析', '竞争优势'],
+    contentFile: '/data/case_studies/industry_best_practices.md',
+    isMarkdownContent: true
+  },
+  {
+    id: 'hands-on-projects',
+    title: 'GEO实战学习项目',
+    company: '实战指南',
+    industry: '教育培训',
+    type: 'project',
+    duration: '分级项目',
+    results: '从入门到高级的完整实战项目体系',
+    description: 'GEO实战学习项目和练习，包含入门级、中级、高级实战项目，提供详细的操作步骤、评价标准和学习反思。',
+    keyLearnings: [
+      '入门级：个人博客GEO基础优化实战',
+      '中级：企业网站和内容营销战略',
+      '高级：多平台整合和企业级GEO战略',
+      '实战练习题和模拟场景训练'
+    ],
+    difficulty: 'beginner',
+    tags: ['实战项目', '学习指南', '操作步骤', '技能提升'],
+    contentFile: '/data/case_studies/hands_on_projects.md',
+    isMarkdownContent: true
+  }
+]
+
+// 合并所有案例
+const allCases = [...caseStudies, ...markdownCases]
+
 const categories = [
-  { id: 'all', name: '全部案例', count: caseStudies.length },
-  { id: 'success', name: '成功案例', count: caseStudies.filter(c => c.type === 'success').length },
-  { id: 'failure', name: '失败案例', count: caseStudies.filter(c => c.type === 'failure').length },
-  { id: 'best-practice', name: '最佳实践', count: caseStudies.filter(c => c.type === 'best-practice').length },
-  { id: 'project', name: '实战项目', count: caseStudies.filter(c => c.type === 'project').length }
+  { id: 'all', name: '全部案例', count: allCases.length },
+  { id: 'success', name: '成功案例', count: allCases.filter(c => c.type === 'success').length },
+  { id: 'failure', name: '失败案例', count: allCases.filter(c => c.type === 'failure').length },
+  { id: 'best-practice', name: '最佳实践', count: allCases.filter(c => c.type === 'best-practice').length },
+  { id: 'project', name: '实战项目', count: allCases.filter(c => c.type === 'project').length }
 ]
 
 const industries = [
@@ -125,7 +216,10 @@ const industries = [
   { id: 'B2B SaaS', name: 'B2B SaaS' },
   { id: '电子商务', name: '电子商务' },
   { id: '内容媒体', name: '内容媒体' },
-  { id: '餐饮服务', name: '餐饮服务' }
+  { id: '餐饮服务', name: '餐饮服务' },
+  { id: '跨行业', name: '跨行业' },
+  { id: '六大核心行业', name: '六大核心行业' },
+  { id: '教育培训', name: '教育培训' }
 ]
 
 const CaseStudyCard = ({ caseStudy }: { caseStudy: CaseStudy }) => {
@@ -247,14 +341,83 @@ const CaseStudyCard = ({ caseStudy }: { caseStudy: CaseStudy }) => {
   )
 }
 
+// Markdown内容渲染组件
+const MarkdownCaseDetail = ({ caseStudy }: { caseStudy: CaseStudy }) => {
+  const [content, setContent] = useState('')
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState('')
+
+  useEffect(() => {
+    if (caseStudy.contentFile) {
+      fetch(caseStudy.contentFile)
+        .then(response => {
+          if (!response.ok) {
+            throw new Error('文件加载失败')
+          }
+          return response.text()
+        })
+        .then(text => {
+          setContent(text)
+          setLoading(false)
+        })
+        .catch(err => {
+          setError(err.message)
+          setLoading(false)
+        })
+    }
+  }, [caseStudy.contentFile])
+
+  if (loading) {
+    return (
+      <div className="flex items-center justify-center py-12">
+        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
+        <span className="ml-2 text-gray-600">加载中...</span>
+      </div>
+    )
+  }
+
+  if (error) {
+    return (
+      <div className="bg-red-50 border border-red-200 rounded-lg p-4 mb-6">
+        <p className="text-red-600">内容加载失败: {error}</p>
+      </div>
+    )
+  }
+
+  return (
+    <div className="prose prose-lg max-w-none">
+      <ReactMarkdown 
+        remarkPlugins={[remarkGfm]}
+        components={{
+          h1: ({children}) => <h1 className="text-3xl font-bold text-gray-900 mb-6">{children}</h1>,
+          h2: ({children}) => <h2 className="text-2xl font-bold text-gray-800 mt-8 mb-4">{children}</h2>,
+          h3: ({children}) => <h3 className="text-xl font-bold text-gray-700 mt-6 mb-3">{children}</h3>,
+          p: ({children}) => <p className="text-gray-700 leading-relaxed mb-4">{children}</p>,
+          ul: ({children}) => <ul className="list-disc list-inside text-gray-700 mb-4 space-y-2">{children}</ul>,
+          ol: ({children}) => <ol className="list-decimal list-inside text-gray-700 mb-4 space-y-2">{children}</ol>,
+          li: ({children}) => <li className="leading-relaxed">{children}</li>,
+          blockquote: ({children}) => <blockquote className="border-l-4 border-blue-500 pl-4 italic text-gray-600 my-4">{children}</blockquote>,
+          code: ({children}) => <code className="bg-gray-100 px-2 py-1 rounded text-sm font-mono">{children}</code>,
+          pre: ({children}) => <pre className="bg-gray-100 p-4 rounded-lg overflow-x-auto mb-4">{children}</pre>,
+          table: ({children}) => <table className="min-w-full border-collapse border border-gray-300 my-4">{children}</table>,
+          th: ({children}) => <th className="border border-gray-300 px-4 py-2 bg-gray-50 font-semibold text-left">{children}</th>,
+          td: ({children}) => <td className="border border-gray-300 px-4 py-2">{children}</td>,
+        }}
+      >
+        {content}
+      </ReactMarkdown>
+    </div>
+  )
+}
+
 export default function CaseStudiesPage() {
   const [selectedCategory, setSelectedCategory] = useState('all')
   const [selectedIndustry, setSelectedIndustry] = useState('all')
-  const [filteredCases, setFilteredCases] = useState<CaseStudy[]>(caseStudies)
+  const [filteredCases, setFilteredCases] = useState<CaseStudy[]>(allCases)
   const [selectedCase, setSelectedCase] = useState<CaseStudy | null>(null)
 
   useEffect(() => {
-    let filtered = caseStudies.filter(caseStudy => {
+    let filtered = allCases.filter(caseStudy => {
       const matchesCategory = selectedCategory === 'all' || caseStudy.type === selectedCategory
       const matchesIndustry = selectedIndustry === 'all' || caseStudy.industry === selectedIndustry
       return matchesCategory && matchesIndustry
@@ -278,16 +441,21 @@ export default function CaseStudiesPage() {
 
         {/* 案例详情 */}
         <div className="bg-white rounded-xl shadow-lg p-8">
-          <div className="mb-8">
-            <h1 className="text-3xl font-bold text-gray-900 mb-4">{selectedCase.title}</h1>
-            <div className="flex items-center space-x-4 text-gray-600">
-              <span className="font-medium">{selectedCase.company}</span>
-              <span>•</span>
-              <span>{selectedCase.industry}</span>
-              <span>•</span>
-              <span>{selectedCase.duration}</span>
-            </div>
-          </div>
+          {/* 如果是markdown案例，使用markdown渲染组件 */}
+          {selectedCase.isMarkdownContent ? (
+            <MarkdownCaseDetail caseStudy={selectedCase} />
+          ) : (
+            <>
+              <div className="mb-8">
+                <h1 className="text-3xl font-bold text-gray-900 mb-4">{selectedCase.title}</h1>
+                <div className="flex items-center space-x-4 text-gray-600">
+                  <span className="font-medium">{selectedCase.company}</span>
+                  <span>•</span>
+                  <span>{selectedCase.industry}</span>
+                  <span>•</span>
+                  <span>{selectedCase.duration}</span>
+                </div>
+              </div>
 
           {/* 核心指标 */}
           {selectedCase.metrics && (
@@ -351,17 +519,19 @@ export default function CaseStudiesPage() {
             </div>
           </div>
 
-          {/* 标签 */}
-          <div>
-            <h2 className="text-xl font-bold text-gray-900 mb-4">相关标签</h2>
-            <div className="flex flex-wrap gap-2">
-              {selectedCase.tags.map((tag, index) => (
-                <span key={index} className="px-3 py-1 bg-blue-100 text-blue-700 text-sm rounded-full">
-                  {tag}
-                </span>
-              ))}
-            </div>
-          </div>
+              {/* 标签 */}
+              <div>
+                <h2 className="text-xl font-bold text-gray-900 mb-4">相关标签</h2>
+                <div className="flex flex-wrap gap-2">
+                  {selectedCase.tags.map((tag, index) => (
+                    <span key={index} className="px-3 py-1 bg-blue-100 text-blue-700 text-sm rounded-full">
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </>
+          )}
         </div>
       </div>
     )
