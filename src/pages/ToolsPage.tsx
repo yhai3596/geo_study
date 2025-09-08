@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { 
   Calculator, 
   CheckSquare, 
@@ -923,6 +923,14 @@ const PerformanceEvaluator = () => {
 
 export default function ToolsPage() {
   const [selectedTool, setSelectedTool] = useState<string | null>(null)
+
+  // 处理URL锚点，自动选择对应工具
+  useEffect(() => {
+    const hash = window.location.hash.replace('#', '')
+    if (hash && tools.find(tool => tool.id === hash)) {
+      setSelectedTool(hash)
+    }
+  }, [])
 
   const renderToolContent = () => {
     if (!selectedTool) return null
